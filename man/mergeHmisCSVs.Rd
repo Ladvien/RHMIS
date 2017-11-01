@@ -7,13 +7,13 @@
 mergeHmisCSVs(dataPathOne, dataPathTwo, pathForCombinedData, feather = FALSE)
 }
 \arguments{
-\item{string}{path to folder contaning first CSV set.}
+\item{string}{Path to folder contaning first CSV set.}
 
-\item{string}{path to folder contaning second CSV set.}
+\item{string}{Path to folder contaning second CSV set.}
 
-\item{string}{path to output where merged CSVs will be written.}
+\item{string}{Path to output where merged CSVs will be written.}
 
-\item{boolean}{save in feather file format.  Default is false. Loading binary data from file takes around 1/10 the time compared to loading a CSV}
+\item{boolean}{Save in feather file format.  Default is false. Loading binary data from file takes around 1/10 the time compared to loading a CSV}
 }
 \description{
 Merges two HMIS CSV sets.
