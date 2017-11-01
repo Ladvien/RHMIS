@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+*.csv
+*.xlsx
+*.xls
+*.pdf
+.Rd2pdf*
+*feather*
+*feather*
+.DS_Store
+update
