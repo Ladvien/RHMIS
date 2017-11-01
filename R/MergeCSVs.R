@@ -4,12 +4,13 @@
 #' @param string path to folder contaning second CSV set.
 #' @param string path to output where merged CSVs will be written.
 #' @param boolean save in feather file format.  Default is false.
-#' @seealso \code{\link{nchar}} which this function wraps
 #' @export
 #' @examples
+#' 
 #' mergeHmisCSVs('/Users/user/local/CSV_2016', 
 #'               '/Users/user/local/CSV_2016',
 #'               '/Users/user/local/CSV_2016_and_2017')
+#' 
 #' mergeHmisCSVs('/Users/user/local/CSV_2016', 
 #'               '/Users/user/local/CSV_2016',
 #'               '/Users/user/local/CSV_2016_and_2017'
