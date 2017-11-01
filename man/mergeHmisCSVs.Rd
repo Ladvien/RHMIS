@@ -13,19 +13,22 @@ mergeHmisCSVs(dataPathOne, dataPathTwo, pathForCombinedData, feather = FALSE)
 
 \item{string}{path to output where merged CSVs will be written.}
 
-\item{boolean}{save in feather file format.  Default is false.}
+\item{boolean}{save in feather file format.  Default is false. Loading binary data from file takes around 1/10 the time compared to loading a CSV}
 }
 \description{
 Merges two HMIS CSV sets.
 }
 \examples{
 
+# Data will be saved in CSV format.
 mergeHmisCSVs('/Users/user/local/CSV_2016', 
               '/Users/user/local/CSV_2016',
               '/Users/user/local/CSV_2016_and_2017')
 
+# Data will be saved in binary format.
 mergeHmisCSVs('/Users/user/local/CSV_2016', 
               '/Users/user/local/CSV_2016',
               '/Users/user/local/CSV_2016_and_2017'
                feather = TRUE)
+
 }

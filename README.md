@@ -7,7 +7,7 @@ These tools are meant to augment any HMIS implementations by creating methods to
 This allows any HMIS implementation to be more loosely coupled to their software provider, since all HMIS software providers are required to produce HMIS CSVs.
 
 ## HMIS Levels
-HMIS data and methods are structured on three levels, System, Agency, and Project.
+HMIS data and methods are structured on three levels: System, Agency, and Project.
 
 ### System
 HUD requires HMIS software vendors implement tools to pull the following standardized reports:

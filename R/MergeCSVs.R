@@ -1,20 +1,23 @@
 #' Merges two HMIS CSV sets.
 #'
-#' @param string path to folder contaning first CSV set.
-#' @param string path to folder contaning second CSV set.
-#' @param string path to output where merged CSVs will be written.
-#' @param boolean save in feather file format.  Default is false.
+#' @param string Path to folder contaning first CSV set.
+#' @param string Path to folder contaning second CSV set.
+#' @param string Path to output where merged CSVs will be written.
+#' @param boolean Save in feather file format.  Default is false. Loading binary data from file takes around 1/10 the time compared to loading a CSV
 #' @export
 #' @examples
 #' 
+#' # Data will be saved in CSV format.
 #' mergeHmisCSVs('/Users/user/local/CSV_2016', 
 #'               '/Users/user/local/CSV_2016',
 #'               '/Users/user/local/CSV_2016_and_2017')
-#' 
+#'
+#' # Data will be saved in binary format.
 #' mergeHmisCSVs('/Users/user/local/CSV_2016', 
 #'               '/Users/user/local/CSV_2016',
 #'               '/Users/user/local/CSV_2016_and_2017'
 #'                feather = TRUE)
+#'
 mergeHmisCSVs <- function(dataPathOne, 
                              dataPathTwo, 
                              pathForCombinedData,
