@@ -3,6 +3,7 @@
 #' which should be a more unique identifier than the PersonalID alone.
 #'
 #' @param dataframe path to folder contaning first CSV set.
+#' @param primaryPersonalIDsOnly Default false.  Returns a dataframe of only PrimaryPersonalIDs and PersonalIDs
 #' @export
 #' @examples
 #' 
@@ -13,7 +14,7 @@
 #' # Get a deduplicated Client
 #' clientDf2 <- unique(clientDf2)
 
-getPrimaryPersonalID <- function(client){
+linkPersonalIDBySSN <- function(client, primaryPersonalIDsOnly = FALSE){
   library(sqldf)
   library(dplyr)
 
@@ -57,5 +58,9 @@ getPrimaryPersonalID <- function(client){
   client$PersonalID <- as.character(client$PersonalID)
   client$PrimaryPersonalID[is.na(client$PrimaryPersonalID)] <- client$PersonalID[is.na(client$PrimaryPersonalID)]
   
+  if(primaryPersonalIDsOnly){
+      client <- dataframe(client$PrimaryPersonalID, client$PersonalID)
+      colnames(client) <- c("PrimaryPersonalID", "PersonalID")
+  }
   client
 }

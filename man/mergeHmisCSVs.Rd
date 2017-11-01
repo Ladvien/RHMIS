@@ -19,14 +19,13 @@ mergeHmisCSVs(dataPathOne, dataPathTwo, pathForCombinedData, feather = FALSE)
 Merges two HMIS CSV sets.
 }
 \examples{
+
 mergeHmisCSVs('/Users/user/local/CSV_2016', 
               '/Users/user/local/CSV_2016',
               '/Users/user/local/CSV_2016_and_2017')
+
 mergeHmisCSVs('/Users/user/local/CSV_2016', 
               '/Users/user/local/CSV_2016',
               '/Users/user/local/CSV_2016_and_2017'
                feather = TRUE)
-}
-\seealso{
-\code{\link{nchar}} which this function wraps
 }
