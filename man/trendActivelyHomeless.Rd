@@ -20,6 +20,7 @@ trendActivelyHomeless(allDataPath, dropboxPath, interval = "week",
 Merges two HMIS CSV sets.
 }
 \examples{
+
 mergeHmisCSVs('/Users/user/local/CSV_2016', 
               '/Users/user/local/CSV_2016',
               '/Users/user/local/CSV_2016_and_2017')

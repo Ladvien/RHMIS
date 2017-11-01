@@ -15,8 +15,6 @@
 #' clientDf2 <- unique(clientDf2)
 
 linkPersonalIDBySSN <- function(client, primaryPersonalIDsOnly = FALSE){
-  library(sqldf)
-  library(dplyr)
 
   originalClient <- client
   client <- sqldf("SELECT DISTINCT PersonalID, SSN FROM client")

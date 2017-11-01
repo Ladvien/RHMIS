@@ -7,6 +7,7 @@
 #' @seealso \code{\link{nchar}} which this function wraps
 #' @export
 #' @examples
+#'
 #' mergeHmisCSVs('/Users/user/local/CSV_2016', 
 #'               '/Users/user/local/CSV_2016',
 #'               '/Users/user/local/CSV_2016_and_2017')
@@ -28,12 +29,6 @@ trendActivelyHomeless <- function(allDataPath,
   hmisFunctionsFilePath <- paste(dropboxPath, "/RScripts/HMIS_R_Functions.R", sep ="")
   primaryPersonalIDFunctionPath <- paste(dropboxPath, "RScripts/RecordLinkInR.R", sep = "")
   outputPath <- paste(dropboxPath, "Output", sep = "")
-  
-  #####################
-  # Load Sources      #
-  #####################
-  source(hmisFunctionsFilePath)
-  source(primaryPersonalIDFunctionPath)
   
   #####################################
   # SSN<->PersonalID Annualized Count #

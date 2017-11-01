@@ -23,9 +23,6 @@ mergeHmisCSVs <- function(dataPathOne,
                              pathForCombinedData,
                              feather = FALSE){
 
-  library(dplyr)  
-  library(tcltk)
-
   newExportID <- "12345"
   
   # Checks to see if directory exits, otherwise, create it.
