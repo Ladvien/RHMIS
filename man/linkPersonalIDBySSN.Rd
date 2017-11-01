@@ -20,6 +20,12 @@ which should be a more unique identifier than the PersonalID alone.
 }
 \examples{
 
+
+peopleDf <- data.frame(PersonalID=c("ZP1U3EPU2FKAWI6K5US5LDV50KRI1LN7", "IA26X38HOTOIBHYIRV8CKR5RDS8KNGHV", "LASDU89NRABVJWW779W4JGGAN90IQ5B2"), 
+                      FirstName=c("Timmy", "Fela", "Sarah"),
+                      LastName=c("Tesa", "Falla", "Kerrigan"),
+                      SSN=c("123456789", "123456789", "987654321"))
+
 clientDf2 <- getPrimaryPersonalID(clientDf1)
 # Remove the old PersonalID
 clientDf2 <- within(clientDf2, rm(PersonalID))
