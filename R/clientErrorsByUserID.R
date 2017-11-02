@@ -85,7 +85,7 @@ clientErrorsByUserID <- function(client) {
     }
 
     errorsByUsers[is.na(errorsByUsers)] <- 0
-    errorsByUsers$TotalErrors <- rowSums(errorsByUsers, dims = 2:nrows(errorsByUsers))
+    errorsByUsers$TotalErrors <- rowSums(errorsByUsers, dims = 2:nrow(errorsByUsers))
 
     errorsByUsers[order(-errorsByUsers$TotalErrors),]
 }
