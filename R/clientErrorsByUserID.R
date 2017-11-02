@@ -21,7 +21,6 @@
 #' colnames(clientDf2)[1] <- "PersonalID"
 #' # Get a deduplicated Client
 #' clientDf2 <- unique(clientDf2)
-
 clientErrorsByUserID <- function(client) {
 
     setError <- function(vector){
