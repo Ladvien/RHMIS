@@ -1,26 +1,21 @@
-#' Takes Client, removes records where SSNs are invalid, then links the PersonalIDs
-#' based upon matching SSNs.  The Client is returned with a column called PrimaryPersonalID
-#' which should be a more unique identifier than the PersonalID alone.
+#' Takes the Client.csv as a dataframe, parses it for data errors, and returns a count of 
+#' errors by element, total of all errors, by UserID.
+#' 
 #'
 #' @param dataframe path to folder contaning first CSV set.
-#' @param primaryPersonalIDsOnly Default false.  Returns a dataframe of only PrimaryPersonalIDs and PersonalIDs
 #' @export
 #' @examples
 #' 
-#'
+#' 
 #' clientDf1 <- data.frame(PersonalID=c("ZP1U3EPU2FKAWI6K5US5LDV50KRI1LN7", 
 #'                       "IA26X38HOTOIBHYIRV8CKR5RDS8KNGHV", 
 #'                       "LASDU89NRABVJWW779W4JGGAN90IQ5B2"), 
-#'                       FirstName=c("Timmy", "Fela", "Sarah"),
+#'                       FirstName=c("", "Fela", "Sarah"),
 #'                       LastName=c("Tesa", "Falla", "Kerrigan"),
-#'                       SSN=c("123456789", "123456789", "987654321"))
+#'                       SSN=c("123456789", "", "987654321",
+#'                       DOB=c("1980-01-01", "", "1983-08-26"))
 #'
-#' clientDf2 <- getPrimaryPersonalID(clientDf1)
-#' # Remove the old PersonalID
-#' clientDf2 <- within(clientDf2, rm(PersonalID))
-#' colnames(clientDf2)[1] <- "PersonalID"
-#' # Get a deduplicated Client
-#' clientDf2 <- unique(clientDf2)
+#' errorsByUserID <- clientErrorsByUserID(clientDf1)
 clientErrorsByUserID <- function(client) {
 
     setError <- function(vector){
