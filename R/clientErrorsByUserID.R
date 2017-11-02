@@ -22,7 +22,7 @@
 #' # Get a deduplicated Client
 #' clientDf2 <- unique(clientDf2)
 clientErrorsByUserID <- function(client) {
-
+    
     setError <- function(vector){
         vector <- as.numeric(vector)
         vector <- replace(vector, vector==NA | vector==8 | vector==9 | vector== 99, 255)
@@ -85,7 +85,7 @@ clientErrorsByUserID <- function(client) {
     }
 
     errorsByUsers[is.na(errorsByUsers)] <- 0
-    errorsByUsers$TotalErrors <- rowSums(errorsByUsers, dims = 2:nrow(errorsByUsers))
+    errorsByUsers$TotalErrors <- rowSums(errorsByUsers, 2:nrow(errorsByUsers))
 
     errorsByUsers[order(-errorsByUsers$TotalErrors),]
 }
