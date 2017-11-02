@@ -1,47 +1,28 @@
-getDataErrorsByUserID <- function(client, 
-                                  enrollment,
-                                  exit
-                                  ) {
+#' Takes Client, removes records where SSNs are invalid, then links the PersonalIDs
+#' based upon matching SSNs.  The Client is returned with a column called PrimaryPersonalID
+#' which should be a more unique identifier than the PersonalID alone.
+#'
+#' @param dataframe path to folder contaning first CSV set.
+#' @param primaryPersonalIDsOnly Default false.  Returns a dataframe of only PrimaryPersonalIDs and PersonalIDs
+#' @export
+#' @examples
+#' 
+#'
+#' clientDf1 <- data.frame(PersonalID=c("ZP1U3EPU2FKAWI6K5US5LDV50KRI1LN7", 
+#'                       "IA26X38HOTOIBHYIRV8CKR5RDS8KNGHV", 
+#'                       "LASDU89NRABVJWW779W4JGGAN90IQ5B2"), 
+#'                       FirstName=c("Timmy", "Fela", "Sarah"),
+#'                       LastName=c("Tesa", "Falla", "Kerrigan"),
+#'                       SSN=c("123456789", "123456789", "987654321"))
+#'
+#' clientDf2 <- getPrimaryPersonalID(clientDf1)
+#' # Remove the old PersonalID
+#' clientDf2 <- within(clientDf2, rm(PersonalID))
+#' colnames(clientDf2)[1] <- "PersonalID"
+#' # Get a deduplicated Client
+#' clientDf2 <- unique(clientDf2)
 
-
-    # Set Java memory high
-    options(java.parameters = "-Xmx14336m") ## memory set to 14 GB
-
-    # Determine the computer being run from.
-    nodename <- Sys.info()['nodename']
-    nodename
-    dropboxPath <- ""
-    mac <- FALSE
-    generatedBy <- ""
-    if (nodename == "DESKTOP-9ARS7LE") {
-    dropboxPath <- "C:/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    generatedBy = "C. Thomas Brittain"
-    } else if (nodename == "Users-MBP"){
-    dropboxPath <- "/Users/user/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    mac <- TRUE
-    generatedBy = "C. Thomas Brittain"
-    } else if (nodename == "Users-MacBook-Pro.local"){
-    dropboxPath <- "/Users/user/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    mac <- TRUE
-    generatedBy = "C. Thomas Brittain"
-    } else if (nodename == "DESKTOP-UB9QQTU"){
-    dropboxPath <- "E:/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    generatedBy = "C. Thomas Brittain"
-    } else if (nodename == "LAPTOP-1DT8SNN0"){
-    dropboxPath <- "C:/Users/kemac/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    generatedBy = "Kelly McWilliams"
-    } else if (nodename == "LAPTOP-DFNDBFS3"){
-    dropboxPath <- "C:/Users/jqual/Dropbox (TCHC)/TCHC Team Folder/HMIS Warehouse/"
-    generatedBy = "J'Qualin Scott"
-    } else if (nodename == "DESKTOP-N2ED2NE"){
-    dropboxPath <-"C:/Users/Trudy Hernandez/Dropbox (TCHC)/TCHC Team Folder"
-    generatedBy <- " Trudy Hernandez"
-    }
-    dropboxPath
-
-    allDataPath <- paste(dropboxPath, "AllData/",sep = "")
-    hmisFunctionsFilePath <- paste(dropboxPath, "/RScripts/HMIS_R_Functions.R", sep ="")
-    source(hmisFunctionsFilePath)
+clientErrorsByUserID <- function(client) {
 
     setError <- function(vector){
         vector <- as.numeric(vector)
@@ -49,7 +30,6 @@ getDataErrorsByUserID <- function(client,
         vector
     }
 
-    client <- loadClient(allDataPath) 
     client$FirstName <- as.character(client$FirstName)
     client$FirstName[is.na(client$FirstName)] <- "255"
 
@@ -104,9 +84,8 @@ getDataErrorsByUserID <- function(client,
         colnames(tmp)[2] <- paste(column, "Errors", sep = "")
         errorsByUsers <- merge(x = errorsByUsers, y = tmp, by = "UserID", all.x = TRUE)
     }
-tmp
+
     errorsByUsers[is.na(errorsByUsers)] <- 0
-    errorsByUsersTotal <- aggregate(errorsByUsers$Frequency, by=list(Category=x$Category), FUN=sum)
     errorsByUsers$TotalErrors <- rowSums(errorsByUsers)
 
     errorsByUsers[order(-errorsByUsers$TotalErrors),]
